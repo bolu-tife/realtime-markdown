@@ -13,11 +13,11 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 // routes for app
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.render('pad');
 });
 
-app.get('/(:id)', function(req, res) {
+app.get('/(:id)', function (req, res) {
   res.render('pad');
 });
 
@@ -26,7 +26,6 @@ app.get('/(:id)', function(req, res) {
 if (process.env.REDISTOGO_URL) {
   var rtg = require("url").parse(process.env.REDISTOGO_URL);
   var redis = require("redis").createClient(rtg.port, rtg.hostname);
-  console.log(rtg.auth)
   redis.auth(rtg.auth.split(":")[1]);
 } else {
   var redis = require("redis").createClient();
@@ -35,7 +34,7 @@ if (process.env.REDISTOGO_URL) {
 
 // options for sharejs
 var options = {
-  db: {type: 'redis', client: redis}
+  db: { type: 'redis', client: redis }
 };
 
 
